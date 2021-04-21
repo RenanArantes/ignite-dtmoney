@@ -6,6 +6,7 @@ import outcomeImg from '../../assets/outcome.svg';
 import incomeImg from '../../assets/income.svg';
 import { Container, TransactionTypeContainer, RadialBox } from './styles';
 import { eventNames } from 'node:process';
+import { api } from '../../services/api';
 
 interface NewTransactionModalProps {
   isOpen: boolean;
@@ -21,9 +22,11 @@ export function NewTransactionModal({isOpen, onRequestClose}: NewTransactionModa
   function handleCreateNewTransacton(e: FormEvent) {
     e.preventDefault()
 
-    console.log({
+    const data = {
       title, value, category, type
-    })
+    }
+
+    api.post('/transactions', data)
   }
 
   return(
