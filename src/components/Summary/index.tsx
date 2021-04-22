@@ -2,6 +2,7 @@ import incomeImg from '../../assets/income.svg';
 import outcomeImg from '../../assets/outcome.svg';
 import totalImg from '../../assets/total.svg';
 import { useTransactions } from '../../hooks/useTransactions';
+import { coinFormat } from '../../utils/coinFormat';
 
 import { Container } from "./styles";
 
@@ -32,10 +33,7 @@ export function Summary() {
           <img src={incomeImg} alt="Entradas "/>
         </header>
         <strong>
-          {new Intl.NumberFormat('pt-BR', {
-            style: 'currency',
-            currency: 'BRL',
-            }).format(summary.deposits)}
+          {coinFormat(summary.deposits)}
         </strong>
       </div>  
       <div>
@@ -44,10 +42,7 @@ export function Summary() {
           <img src={outcomeImg} alt="Saídas "/>
         </header>
         <strong>
-          -{new Intl.NumberFormat('pt-BR', {
-            style: 'currency',
-            currency: 'BRL',
-            }).format(summary.deposits)}
+          -{coinFormat(summary.withdraws)}
           </strong>
       </div>
       <div className="highlight-background">
@@ -56,10 +51,7 @@ export function Summary() {
           <img src={totalImg} alt="Entradas "/>
         </header>
         <strong>
-        {new Intl.NumberFormat('pt-BR', {
-            style: 'currency',
-            currency: 'BRL',
-          }).format(summary.deposits)}
+        {coinFormat(summary.total)}
         </strong>
       </div>
     </Container>
